@@ -1,24 +1,8 @@
 package net.goblinmine.gmt;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
 import net.minecraft.block.PoweredRailBlock;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.sound.BlockSoundGroup;
 
 public class CopperRailBlock extends PoweredRailBlock {
-    public static final Block BLOCK = new CopperRailBlock(
-            AbstractBlock.Settings.create()
-                    .strength(0.7f, 0.7f)
-                    .sounds(BlockSoundGroup.METAL)
-                    .noCollision()
-    );
-
-    public static final BlockItem BLOCK_ITEM = new BlockItem(BLOCK,
-            new Item.Settings()
-    );
-
     public CopperRailBlock(Settings settings){
         super(settings);
     }

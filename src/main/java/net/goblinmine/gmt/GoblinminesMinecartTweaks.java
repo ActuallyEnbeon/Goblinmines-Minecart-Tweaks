@@ -1,14 +1,18 @@
 package net.goblinmine.gmt;
 
 import net.fabricmc.api.ModInitializer;
-
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.GameRules;
 import org.slf4j.Logger;
@@ -20,6 +24,19 @@ public class GoblinminesMinecartTweaks implements ModInitializer {
     // That way, it's clear which mod wrote info, warnings, and errors.
     public static final Logger LOGGER = LoggerFactory.getLogger("Goblinmine's Minecart Tweaks");
     public static final String MOD_ID = "goblinmines_minecart_tweaks";
+
+    private static final Identifier copperRailID = Identifier.of(MOD_ID, "copper_rail");
+
+    public static final Block COPPER_RAIL_BLOCK = Blocks.register(
+            RegistryKey.of(RegistryKeys.BLOCK, copperRailID),
+            CopperRailBlock::new,
+            AbstractBlock.Settings.create()
+                    .strength(0.7f, 0.7f)
+                    .sounds(BlockSoundGroup.METAL)
+                    .noCollision()
+    );
+
+    public static final BlockItem COPPER_RAIL_ITEM = (BlockItem) Items.register(COPPER_RAIL_BLOCK);
 
     public static final GameRules.Key<GameRules.IntRule> POWERED_RAIL_SPEED =
             GameRuleRegistry.register("poweredRailSpeed", GameRules.Category.MISC,
@@ -36,14 +53,11 @@ public class GoblinminesMinecartTweaks implements ModInitializer {
 
         LOGGER.info("Hello Fabric world!");
 
-        Identifier CopperRailID = Identifier.of(MOD_ID, "copper_rail");
-        Registry.register(Registries.BLOCK, CopperRailID, CopperRailBlock.BLOCK);
-        Registry.register(Registries.ITEM, CopperRailID, CopperRailBlock.BLOCK_ITEM);
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(content -> {
-            content.addAfter(Items.RAIL, CopperRailBlock.BLOCK_ITEM);
-        });
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(content -> {
-            content.addAfter(Items.RAIL, CopperRailBlock.BLOCK_ITEM);
-        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(content ->
+                content.addAfter(Items.RAIL, COPPER_RAIL_ITEM)
+        );
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(content ->
+                content.addAfter(Items.RAIL, COPPER_RAIL_ITEM)
+        );
     }
 }

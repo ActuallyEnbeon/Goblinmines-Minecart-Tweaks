@@ -8,6 +8,9 @@ public class GoblinminesMinecartTweaksClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		// This entrypoint is suitable for setting up client-specific logic, such as rendering.
-		BlockRenderLayerMap.INSTANCE.putBlock(CopperRailBlock.BLOCK, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(
+				GoblinminesMinecartTweaks.COPPER_RAIL_BLOCK,
+				RenderLayer.getCutout()
+		);
 	}
 }

@@ -2,13 +2,14 @@
 	"schemaVersion": 1,
 	"id": "goblinmines_minecart_tweaks",
 	"version": "${version}",
-	"name": "Goblinmine`s Minecart Tweaks",
+	"name": "Goblinmine's Minecart Tweaks",
 	"description": "This mod is for everyone who want minecarts to be a viable method of travel again! It buffs the speed of the powered rail and adds the copper rail as as a cheaper powered rail option with vanilla speed",
 	"authors": [
-		"Goblinmine"
+		"Goblinmine",
+		"Enbeon"
 	],
 	"contact": {
-		"sources": "https://github.com/Goblinmine/Goblinmines-Minecart-Tweaks"
+		"sources": "https://github.com/ActuallyEnbeon/Goblinmines-Minecart-Tweaks"
 	},
 	"license": "CC BY-NC-SA 4.0",
 	"icon": "assets/goblinmines_minecart_tweaks/icon.png",
@@ -33,7 +34,7 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.15.11",
-		"minecraft": "1.21",
+		"minecraft": "1.21.4",
 		"java": ">=21",
 		"fabric-api": "*"
 	}
